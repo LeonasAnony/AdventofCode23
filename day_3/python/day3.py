@@ -30,7 +30,7 @@ def input2lists(input:list):
 
 def compute_lists(lists:list):
 	sum:int = 0
-	nums:dict = {}
+	starnums:list = []
 	stars:list = []
 	for row in range(len(lists)):
 		column = 0
@@ -45,13 +45,16 @@ def compute_lists(lists:list):
 					else:
 						break
 				num = int("".join(map(str, lists[row][column:num_end+1])))
-				nums[num] = [row, column, num_end]
 
-				valid = verify_surrounding(lists, row, column, num_end)
+				valid, starnum = verify_surrounding(lists, row, column, num_end)
 				if valid:
 					sum += num
 				else:
 					print(str(num) + "	Row: " + str(row) + ", Start: " + str(column) + ", End: " + str(num_end) + ", Valid: " + str(valid))
+
+				if starnum:
+					print(str(num) + "	Row: " + str(row) + ", Start: " + str(column) + ", End: " + str(num_end) + ", Starnum: " + str(starnum))
+					starnums.append([num, row, column, num_end])
 
 				column = num_end
 
@@ -60,50 +63,56 @@ def compute_lists(lists:list):
 
 			column += 1
 
-	return sum, nums, stars
+	return sum, starnums, stars
 
 
 def verify_surrounding(lists:list, row:int, num_start:int, num_end:int):
-	for y in range(row-1, row+2):
-		if y < 0 or y >= len(lists):
+	for r in range(row-1, row+2):
+		if r < 0 or r >= len(lists):
 #			print("y skip")
 #			print()
 			continue
 #		print(lists[y])
 #		print("Y: " + str(y) + ", len: " + str(len(lists[y])))
-		for x in range(num_start-1, num_end+2):
+		for c in range(num_start-1, num_end+2):
 #			print("X: " + str(x))
-			if x < 0 or x >= len(lists[y]):
+			if c < 0 or c >= len(lists[r]):
 #				print("x skip")
 				continue
 #			print(lists[y][x])
-			if lists[y][x] not in [".","1","2","3","4","5","6","7","8","9","0"]:
-				return True
+			if lists[r][c] not in [".","1","2","3","4","5","6","7","8","9","0"]:
+				if lists[r][c] == "*":
+					return True, True
+				return True, False
 #		print()
-	return False
+	return False, False
 
 
-def calculate_ratios(nums:dict, stars:list, lists:list):
+def calculate_ratios(nums:list, stars:list, lists:list):
 	sum_ratios:int = 0
 	s = 0
 	while(s < len(stars)):
 #		print(stars[s])
-		for c in range(stars[s][1]-1, stars[s][1]+2):
-			if c < 0 or c >= len(lists[stars[s][0]]):
+		for r in range(stars[s][0]-1, stars[s][0]+2):
+			if r < 0 or r >= len(lists[stars[s][0]]):
+#				print("r skip")
 				continue
-#			print(str((r, c)))
-			i = 0
-			while(i < len(nums)):
-				if stars[s][0] in range(list(nums.values())[i][0]-1, list(nums.values())[i][0]+2) and c in range(list(nums.values())[i][1], list(nums.values())[i][2]+1):
-					if list(nums)[i] not in stars[s][2]:
-						stars[s][2].append(list(nums)[i])
-#						print("nums: " + str(list(nums)[i]))
-				i += 1
+			for num in nums:
+				if num[1] == r:
+#					print(r)
+#					print(num[2], range(stars[s][1]-1, stars[s][1]+2), num[3], range(stars[s][1]-1, stars[s][1]+2))
+					if num[2] in range(stars[s][1]-1, stars[s][1]+2) or num[3] in range(stars[s][1]-1, stars[s][1]+2):
+#						print(num[0])
+						if num[0] not in stars[s][2]:
+							stars[s][2].append(num[0])
+#							print("num: " + str(num[0]))
 		if len(stars[s][2]) == 2:
 			sum_ratios += stars[s][2][0] * stars[s][2][1]
-			print(stars[s][2][0], stars[s][2][1])
+		elif len(stars[s][2]) == 3:
+			print("!!!	3er Kaktus	!!!")
+#		print(stars[s][2])
 		s += 1
-	print(stars)
+#	print(stars)
 	return sum_ratios
 
 
@@ -113,13 +122,6 @@ def matrix_print(matrix:list):
 
 
 if __name__ == "__main__":
-#	print("Example Input: " + str(example_input1))
-#	com_example = compute_games(example_input1)
-#	print()
-#	print("Computing input Part 1&2...")
-#	computed_games = compute_games(get_input(input_url))
-#	print()
-#	print()
 	print("PART 1")
 	print()
 	print("Testing...")
