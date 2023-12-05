@@ -69,22 +69,14 @@ def compute_lists(lists:list):
 def verify_surrounding(lists:list, row:int, num_start:int, num_end:int):
 	for r in range(row-1, row+2):
 		if r < 0 or r >= len(lists):
-#			print("y skip")
-#			print()
 			continue
-#		print(lists[y])
-#		print("Y: " + str(y) + ", len: " + str(len(lists[y])))
 		for c in range(num_start-1, num_end+2):
-#			print("X: " + str(x))
 			if c < 0 or c >= len(lists[r]):
-#				print("x skip")
 				continue
-#			print(lists[y][x])
 			if lists[r][c] not in [".","1","2","3","4","5","6","7","8","9","0"]:
 				if lists[r][c] == "*":
 					return True, True
 				return True, False
-#		print()
 	return False, False
 
 
@@ -95,21 +87,18 @@ def calculate_ratios(nums:list, stars:list, lists:list):
 #		print(stars[s])
 		for r in range(stars[s][0]-1, stars[s][0]+2):
 			if r < 0 or r >= len(lists[stars[s][0]]):
-#				print("r skip")
 				continue
 			for num in nums:
 				if num[1] == r:
 #					print(r)
 #					print(num[2], range(stars[s][1]-1, stars[s][1]+2), num[3], range(stars[s][1]-1, stars[s][1]+2))
 					if num[2] in range(stars[s][1]-1, stars[s][1]+2) or num[3] in range(stars[s][1]-1, stars[s][1]+2):
-#						print(num[0])
-						if num[0] not in stars[s][2]:
-							stars[s][2].append(num[0])
-#							print("num: " + str(num[0]))
+						stars[s][2].append(num[0])
+#						print("num: " + str(num[0]))
 		if len(stars[s][2]) == 2:
 			sum_ratios += stars[s][2][0] * stars[s][2][1]
 		elif len(stars[s][2]) == 3:
-			print("!!!	3er Kaktus	!!!")
+			print("!!!	 3 Stars	!!!")
 #		print(stars[s][2])
 		s += 1
 #	print(stars)
