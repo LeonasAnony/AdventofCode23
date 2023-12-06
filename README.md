@@ -1,5 +1,5 @@
 # Advent of Code 23
-[![AoC 2023](https://img.shields.io/badge/Stars_★-6-9f9f9f)](https://adventofcode.com/2023)
+[![AoC 2023](https://img.shields.io/badge/Stars_★-8-9f9f9f)](https://adventofcode.com/2023)
 
 https://adventofcode.com/2023
 
@@ -38,5 +38,14 @@ Probably mostly Python, although trying to try new languages
 **Date of completion:** 4.12. ✖️
 
 **Time to complete:** ~3:00:00
+
+**Stars got:** 2/2 ✔️
+
+### Day 4
+2 days late, but satisfied with the solution...
+
+**Date of completion:** 6.12. ✖️
+
+**Time to complete:** ~1:30:00
 
 **Stars got:** 2/2 ✔️
