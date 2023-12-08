@@ -1,5 +1,5 @@
 # Advent of Code 23
-[![AoC 2023](https://img.shields.io/badge/Stars_★-8-9f9f9f)](https://adventofcode.com/2023)
+[![AoC 2023](https://img.shields.io/badge/Stars_★-10-9f9f9f)](https://adventofcode.com/2023)
 
 https://adventofcode.com/2023
 
