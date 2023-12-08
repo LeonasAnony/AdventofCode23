@@ -49,3 +49,15 @@ Probably mostly Python, although trying to try new languages
 **Time to complete:** ~1:30:00
 
 **Stars got:** 2/2 ✔️
+
+### Day 5
+Tried 3 options for Part 2:
+1. compute LUT than each seed, used too much ram and crashed
+2. for each seed lookup location, would take way to look
+3. from location=0 starting, lookup if seed is in input, works but still takes a bit
+
+**Date of completion:** 8.12. ✖️
+
+**Time to complete:** ~4:30:00
+
+**Stars got:** 2/2 ✔️
